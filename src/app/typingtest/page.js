@@ -55,7 +55,7 @@ export default function TypingTest() {
     if (targetText.length - userInput.length < 20) {
       setTargetText(prev => prev + ' ' + getRandomWords(10));
     }
-  }, [userInput.length]);
+  }, [userInput, targetText.length]);
 
 
   const handleInput = (e) => {
@@ -125,9 +125,8 @@ const renderErrorReport = () => {
       {report.map((entry, idx) => (
         <li key={idx} className="list-group-item">
           {/* You mistyped "<strong>{entry.correct}</strong>" as "<strong>{entry.wrong}</strong>" {entry.count} {entry.count === 1 ? 'time' : 'times'}. */}
-        <span>
-  You mistyped "<strong>{entry.correct}</strong>" as "<strong>{entry.wrong}</strong>" {entry.count} {entry.count === 1 ? 'time' : 'times'}.
-</span>
+        You mistyped &quot;{entry.correct}&quot; as &quot;{entry.wrong}&quot; {entry.count} {entry.count === 1 ? 'time' : 'times'}.
+
 
         </li>
       ))}
