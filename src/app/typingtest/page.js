@@ -48,14 +48,15 @@ export default function TypingTest() {
     }
 
     return () => clearInterval(timerRef.current);
-  }, [timerStarted]);
+  }, [timerStarted, timeLeft]);
 
   // Auto-append more words
   useEffect(() => {
     if (targetText.length - userInput.length < 20) {
       setTargetText(prev => prev + ' ' + getRandomWords(10));
     }
-  }, [userInput]);
+  }, [userInput.length]);
+
 
   const handleInput = (e) => {
     const value = e.target.value;
@@ -123,7 +124,11 @@ const renderErrorReport = () => {
     <ul className="list-group list-group-flush">
       {report.map((entry, idx) => (
         <li key={idx} className="list-group-item">
-          You mistyped "<strong>{entry.correct}</strong>" as "<strong>{entry.wrong}</strong>" {entry.count} {entry.count === 1 ? 'time' : 'times'}.
+          {/* You mistyped "<strong>{entry.correct}</strong>" as "<strong>{entry.wrong}</strong>" {entry.count} {entry.count === 1 ? 'time' : 'times'}. */}
+        <span>
+  You mistyped "<strong>{entry.correct}</strong>" as "<strong>{entry.wrong}</strong>" {entry.count} {entry.count === 1 ? 'time' : 'times'}.
+</span>
+
         </li>
       ))}
     </ul>
